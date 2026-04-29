@@ -1,0 +1,1836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mosaic Kitchen — Fine Dining & Garden Lounge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #080808;
+    --charcoal: #111111;
+    --gold: #E8A820;
+    --gold-light: #F5C84A;
+    --green: #2E7D32;
+    --green-bright: #43A047;
+    --red: #C62828;
+    --red-bright: #EF5350;
+    --white: #F5F0E8;
+    --cream: #EDE0C4;
+    --grey: #888880;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Cormorant Garamond', serif;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 48px;
+    background: linear-gradient(to bottom, rgba(8,8,8,0.95), transparent);
+    backdrop-filter: blur(2px);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .logo-mark {
+    width: 48px;
+    height: 48px;
+    position: relative;
+  }
+
+  .logo-mark svg { width: 100%; height: 100%; }
+
+  .nav-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.15em;
+    color: var(--white);
+  }
+
+  .nav-brand span { color: var(--gold); }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--grey);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-cta {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: var(--gold);
+    color: var(--black);
+    border: none;
+    padding: 12px 24px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background 0.3s, transform 0.2s;
+  }
+
+  .nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 0 48px;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 60% at 70% 50%, rgba(232,168,32,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(46,125,50,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse 30% 30% at 80% 20%, rgba(198,40,40,0.05) 0%, transparent 50%);
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(232,168,32,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232,168,32,0.03) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(60px, 9vw, 120px);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+
+  .hero-title .accent { color: var(--gold); font-style: italic; }
+  .hero-title .line2 { display: block; color: var(--cream); }
+
+  .hero-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: rgba(245,240,232,0.7);
+    max-width: 440px;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+
+  .hero-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.7s forwards;
+  }
+
+  .tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    border: 1px solid rgba(232,168,32,0.3);
+    color: var(--gold);
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s forwards;
+  }
+
+  .btn-primary {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 700;
+    background: var(--gold);
+    color: var(--black);
+    padding: 18px 40px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  .btn-secondary {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--white);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.3s;
+  }
+
+  .btn-secondary:hover { color: var(--gold); }
+  .btn-secondary span { font-size: 18px; }
+
+  .hero-image-area {
+    position: absolute;
+    right: -60px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50%;
+    height: 80vh;
+    opacity: 0;
+    animation: fadeIn 1.2s 0.5s forwards;
+  }
+
+  .hero-mosaic {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .mosaic-block {
+    position: absolute;
+    border-radius: 2px;
+  }
+
+  .mb1 { width: 260px; height: 340px; top: 5%; right: 10%; background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%); overflow: hidden; }
+  .mb2 { width: 180px; height: 220px; bottom: 10%; right: 30%; background: linear-gradient(135deg, #0f1f0f 0%, #1a2a1a 100%); overflow: hidden; }
+  .mb3 { width: 140px; height: 160px; top: 20%; right: 42%; background: linear-gradient(135deg, #1f0f0f 0%, #2a1a1a 100%); overflow: hidden; }
+
+  .mosaic-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 16px;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .mosaic-img-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    color: rgba(232,168,32,0.1);
+  }
+
+  .color-stripe {
+    position: absolute;
+    right: 48px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .stripe { width: 4px; height: 60px; }
+  .stripe-green { background: var(--green-bright); }
+  .stripe-gold { background: var(--gold); }
+  .stripe-red { background: var(--red-bright); }
+
+  /* ── SCROLL INDICATOR ── */
+  .scroll-ind {
+    position: absolute;
+    bottom: 40px;
+    left: 48px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    opacity: 0;
+    animation: fadeIn 1s 1.2s forwards;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 60px;
+    background: var(--gold);
+    animation: scrollPulse 2s infinite;
+  }
+
+  .scroll-text {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--grey);
+    writing-mode: vertical-rl;
+  }
+
+  /* ── SECTION SHARED ── */
+  section { position: relative; overflow: hidden; }
+
+  .section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    max-width: 60px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.4;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  /* ── ABOUT ── */
+  .about {
+    padding: 120px 0;
+    background: var(--charcoal);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .about-left .section-title {
+    margin-bottom: 32px;
+  }
+
+  .about-left .section-title em {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .about-body {
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.85;
+    color: rgba(245,240,232,0.7);
+    margin-bottom: 24px;
+  }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+    padding-top: 48px;
+    border-top: 1px solid rgba(232,168,32,0.15);
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--grey);
+  }
+
+  .about-right {
+    position: relative;
+  }
+
+  .about-card-stack {
+    position: relative;
+    height: 500px;
+  }
+
+  .about-card {
+    position: absolute;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .about-card-main {
+    width: 320px;
+    height: 420px;
+    top: 0;
+    right: 0;
+    background: linear-gradient(135deg, #1a1a1a, #222);
+    border: 1px solid rgba(232,168,32,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .about-card-secondary {
+    width: 220px;
+    height: 280px;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(135deg, #0d1a0d, #1a2a1a);
+    border: 1px solid rgba(67,160,71,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-icon {
+    font-size: 48px;
+    color: rgba(232,168,32,0.2);
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+  }
+
+  .about-badge {
+    position: absolute;
+    top: 50%;
+    left: -20px;
+    transform: translateY(-50%);
+    background: var(--gold);
+    color: var(--black);
+    padding: 20px 16px;
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: translateY(-50%) rotate(180deg);
+    left: auto;
+    right: -12px;
+    top: 30%;
+  }
+
+  /* ── OFFERINGS ── */
+  .offerings {
+    padding: 120px 0;
+    background: var(--black);
+  }
+
+  .offerings-header {
+    margin-bottom: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .offerings-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+  }
+
+  .offering-card {
+    background: var(--charcoal);
+    padding: 48px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: default;
+    border-bottom: 3px solid transparent;
+  }
+
+  .offering-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  .offering-card:nth-child(1)::before { background: linear-gradient(135deg, rgba(232,168,32,0.06), transparent); }
+  .offering-card:nth-child(2)::before { background: linear-gradient(135deg, rgba(46,125,50,0.06), transparent); }
+  .offering-card:nth-child(3)::before { background: linear-gradient(135deg, rgba(198,40,40,0.06), transparent); }
+  .offering-card:nth-child(4)::before { background: linear-gradient(135deg, rgba(232,168,32,0.06), transparent); }
+
+  .offering-card:nth-child(1):hover { border-bottom-color: var(--gold); }
+  .offering-card:nth-child(2):hover { border-bottom-color: var(--green-bright); }
+  .offering-card:nth-child(3):hover { border-bottom-color: var(--red-bright); }
+  .offering-card:nth-child(4):hover { border-bottom-color: var(--gold); }
+
+  .offering-card:hover { transform: translateY(-4px); }
+  .offering-card:hover::before { opacity: 1; }
+
+  .offering-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    font-weight: 900;
+    line-height: 1;
+    color: rgba(232,168,32,0.08);
+    margin-bottom: 32px;
+    position: absolute;
+    top: 20px;
+    right: 24px;
+  }
+
+  .offering-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+  }
+
+  .offering-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .offering-desc {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: rgba(245,240,232,0.55);
+  }
+
+  /* ── MENU SECTION ── */
+  .menu-section {
+    padding: 120px 0;
+    background: var(--charcoal);
+    position: relative;
+  }
+
+  .menu-section::before {
+    content: 'MENU';
+    position: absolute;
+    right: -40px;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 120px;
+    color: rgba(232,168,32,0.03);
+    letter-spacing: 0.1em;
+    pointer-events: none;
+  }
+
+  .menu-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: end;
+    margin-bottom: 80px;
+  }
+
+  .menu-tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 48px;
+  }
+
+  .menu-tab {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 12px 24px;
+    background: none;
+    border: 1px solid rgba(232,168,32,0.2);
+    color: var(--grey);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .menu-tab.active, .menu-tab:hover {
+    background: var(--gold);
+    color: var(--black);
+    border-color: var(--gold);
+    font-weight: 700;
+  }
+
+  .menu-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(232,168,32,0.05);
+  }
+
+  .menu-item {
+    padding: 28px 32px;
+    background: var(--charcoal);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    transition: background 0.3s;
+  }
+
+  .menu-item:hover { background: #161616; }
+
+  .menu-item-info {}
+
+  .menu-item-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .menu-item-desc {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(245,240,232,0.45);
+    line-height: 1.5;
+  }
+
+  .menu-item-price {
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    color: var(--gold);
+    white-space: nowrap;
+    font-weight: 700;
+    padding-top: 2px;
+  }
+
+  .menu-divider {
+    width: 1px;
+    background: linear-gradient(to bottom, var(--gold), var(--green-bright), var(--red-bright));
+    opacity: 0.3;
+  }
+
+  /* ── BEER SECTION ── */
+  .beer-section {
+    padding: 100px 0;
+    background: var(--black);
+    overflow: hidden;
+  }
+
+  .beer-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    min-height: 500px;
+  }
+
+  .beer-visual {
+    background: linear-gradient(135deg, #0a1a0a, #0f2a0f);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 80px;
+  }
+
+  .beer-visual::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(67,160,71,0.15) 0%, transparent 70%);
+  }
+
+  .beer-glass {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .beer-glass-icon {
+    font-size: 80px;
+    line-height: 1;
+    margin-bottom: 24px;
+    filter: drop-shadow(0 0 40px rgba(232,168,32,0.3));
+  }
+
+  .beer-label-card {
+    background: rgba(0,0,0,0.6);
+    border: 1px solid rgba(67,160,71,0.3);
+    padding: 20px 32px;
+    backdrop-filter: blur(10px);
+  }
+
+  .beer-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+
+  .beer-sub {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--green-bright);
+    text-transform: uppercase;
+  }
+
+  .beer-content {
+    padding: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .beer-content .section-title { margin-bottom: 24px; }
+  .beer-content .section-title em { color: var(--green-bright); }
+
+  .beer-body {
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.85;
+    color: rgba(245,240,232,0.65);
+    margin-bottom: 32px;
+  }
+
+  .beer-features {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .beer-feature {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 16px;
+    font-weight: 300;
+    color: rgba(245,240,232,0.7);
+  }
+
+  .feature-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .feature-dot.green { background: var(--green-bright); }
+  .feature-dot.gold { background: var(--gold); }
+  .feature-dot.red { background: var(--red-bright); }
+
+  /* ── EXPERIENCE / GALLERY ── */
+  .experience {
+    padding: 120px 0;
+    background: var(--charcoal);
+  }
+
+  .experience-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  .experience-header .section-label {
+    justify-content: center;
+  }
+
+  .experience-header .section-label::after { display: none; }
+  .experience-header .section-label::before {
+    content: '';
+    flex: 1;
+    max-width: 60px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.4;
+  }
+
+  .exp-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 240px 240px;
+    gap: 3px;
+  }
+
+  .exp-cell {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    padding: 24px;
+  }
+
+  .exp-cell-1 { grid-row: 1 / 3; background: linear-gradient(135deg, #1a1a2a, #0a0a1a); }
+  .exp-cell-2 { background: linear-gradient(135deg, #0a1a0a, #0f1f0f); }
+  .exp-cell-3 { background: linear-gradient(135deg, #1a0a0a, #2a0f0f); }
+  .exp-cell-4 { background: linear-gradient(135deg, #1a1a0a, #2a2a0f); }
+  .exp-cell-5 { background: linear-gradient(135deg, #0a0a1a, #1a1a2a); }
+
+  .exp-inner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .exp-emoji { font-size: 48px; opacity: 0.3; }
+  .exp-emoji-lg { font-size: 64px; opacity: 0.3; }
+
+  .exp-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: rgba(0,0,0,0.7);
+    padding: 8px 16px;
+    color: var(--gold);
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ── LOCATION ── */
+  .location {
+    padding: 120px 0;
+    background: var(--black);
+  }
+
+  .location-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .location-title { margin-bottom: 32px; }
+  .location-title em { color: var(--gold); }
+
+  .location-info {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-bottom: 48px;
+  }
+
+  .info-block {}
+
+  .info-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .info-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.6;
+  }
+
+  .hours-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 24px;
+  }
+
+  .hour-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+    color: rgba(245,240,232,0.65);
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .hour-day { font-weight: 300; }
+  .hour-time { color: var(--gold); font-weight: 600; }
+
+  .map-placeholder {
+    background: linear-gradient(135deg, #111, #1a1a1a);
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border: 1px solid rgba(232,168,32,0.1);
+    overflow: hidden;
+  }
+
+  .map-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(232,168,32,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232,168,32,0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .map-pin {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+
+  .map-pin-icon {
+    font-size: 48px;
+    display: block;
+    margin-bottom: 16px;
+    filter: drop-shadow(0 0 20px rgba(232,168,32,0.5));
+    animation: pinBounce 2s ease-in-out infinite;
+  }
+
+  .map-pin-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(0,0,0,0.8);
+    padding: 8px 20px;
+    border: 1px solid rgba(232,168,32,0.3);
+  }
+
+  /* ── RESERVATION ── */
+  .reservation {
+    padding: 120px 0;
+    background: var(--charcoal);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .reservation::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 50% 80% at 50% 50%, rgba(232,168,32,0.04) 0%, transparent 70%);
+  }
+
+  .reservation-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .reservation-inner .section-title { margin-bottom: 16px; }
+  .reservation-inner .section-title em { color: var(--gold); }
+
+  .reservation-sub {
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(245,240,232,0.6);
+    margin-bottom: 56px;
+    line-height: 1.7;
+  }
+
+  .res-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-bottom: 2px;
+  }
+
+  .res-field {
+    position: relative;
+  }
+
+  .res-field.full { grid-column: 1 / -1; }
+
+  .res-input {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: none;
+    border-bottom: 1px solid rgba(232,168,32,0.2);
+    padding: 20px 24px;
+    color: var(--white);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 300;
+    transition: all 0.3s;
+    outline: none;
+  }
+
+  .res-input:focus {
+    background: rgba(232,168,32,0.04);
+    border-bottom-color: var(--gold);
+  }
+
+  .res-input::placeholder {
+    color: rgba(245,240,232,0.25);
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .res-submit {
+    width: 100%;
+    padding: 24px;
+    background: var(--gold);
+    color: var(--black);
+    border: none;
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 2px;
+  }
+
+  .res-submit:hover { background: var(--gold-light); }
+
+  .res-note {
+    margin-top: 24px;
+    font-size: 14px;
+    color: rgba(245,240,232,0.35);
+    font-weight: 300;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #050505;
+    padding: 60px 48px 40px;
+    border-top: 1px solid rgba(232,168,32,0.1);
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 60px;
+  }
+
+  .footer-brand-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+
+  .footer-brand-name span { color: var(--gold); }
+
+  .footer-tagline {
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(245,240,232,0.4);
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 12px;
+  }
+
+  .social-link {
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(232,168,32,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--grey);
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.3s;
+  }
+
+  .social-link:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(232,168,32,0.05);
+  }
+
+  .footer-col-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .footer-links a {
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(245,240,232,0.45);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 32px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .footer-copy {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: rgba(245,240,232,0.2);
+  }
+
+  .color-bar {
+    display: flex;
+    gap: 3px;
+  }
+
+  .color-bar-piece {
+    width: 24px;
+    height: 3px;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(0.6) translateY(20px); }
+  }
+
+  @keyframes pinBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { padding: 0 24px; }
+    .hero-image-area { display: none; }
+    .section-inner { padding: 0 24px; }
+    .about-grid, .menu-header, .location-grid, .beer-inner { grid-template-columns: 1fr; gap: 48px; }
+    .about-card-stack { height: 300px; }
+    .offerings-grid { grid-template-columns: 1fr 1fr; }
+    .menu-items { grid-template-columns: 1fr; }
+    .exp-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .exp-cell-1 { grid-row: auto; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .footer-bottom { flex-direction: column; gap: 16px; }
+    .res-form { grid-template-columns: 1fr; }
+    .res-field.full { grid-column: auto; }
+    footer { padding: 48px 24px 32px; }
+    .beer-content { padding: 48px 24px; }
+    .beer-visual { padding: 48px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="logo-mark">
+      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="24" cy="24" r="23" stroke="#333" stroke-width="1"/>
+        <!-- M logo recreated -->
+        <polygon points="10,34 10,18 18,26 24,18 30,26 38,18 38,34" fill="none"/>
+        <!-- Left green wing -->
+        <polygon points="10,18 10,26 16,20 18,26 22,22 18,14" fill="#43A047"/>
+        <!-- Right gold wing -->
+        <polygon points="38,18 38,26 32,20 30,26 26,22 30,14" fill="#E8A820"/>
+        <!-- Left red body -->
+        <polygon points="10,28 10,34 18,34 18,26" fill="#C62828"/>
+        <!-- Center gold body -->
+        <polygon points="18,26 24,32 30,26 24,22" fill="#E8A820"/>
+        <!-- Right red body -->
+        <polygon points="38,28 38,34 30,34 30,26" fill="#C62828"/>
+      </svg>
+    </div>
+    <span class="nav-brand">MO<span>SAIC</span></span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#offerings">Experience</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#location">Find Us</a></li>
+    <li><a href="#reservation">Reserve</a></li>
+  </ul>
+
+  <button class="nav-cta" onclick="document.getElementById('reservation').scrollIntoView({behavior:'smooth'})">Book a Table</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Fine Dining &amp; Garden Lounge</div>
+    <h1 class="hero-title">
+      Where Every<br>
+      <span class="accent">Flavour</span>
+      <span class="line2">Tells a Story</span>
+    </h1>
+    <p class="hero-desc">
+      African heritage meets culinary artistry. An extraordinary dining experience where tradition and innovation share the same table.
+    </p>
+    <div class="hero-tags">
+      <span class="tag">Fine Dining</span>
+      <span class="tag">Garden Lounge</span>
+      <span class="tag">In-house Beer</span>
+      <span class="tag">African Cuisine</span>
+      <span class="tag">Chinese Cuisine</span>
+    </div>
+    <div class="hero-actions">
+      <a href="#menu" class="btn-primary">Explore Menu</a>
+      <a href="#reservation" class="btn-secondary"><span>→</span> Reserve a Table</a>
+    </div>
+  </div>
+
+  <div class="hero-image-area">
+    <div class="hero-mosaic">
+      <div class="mosaic-block mb1">
+        <div class="mosaic-img-placeholder">🍽</div>
+        <div class="mosaic-label">Fine Dining</div>
+      </div>
+      <div class="mosaic-block mb2">
+        <div class="mosaic-img-placeholder">🌿</div>
+        <div class="mosaic-label">Garden Lounge</div>
+      </div>
+      <div class="mosaic-block mb3">
+        <div class="mosaic-img-placeholder">🍺</div>
+        <div class="mosaic-label">In-house Beer</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="color-stripe">
+    <div class="stripe stripe-green"></div>
+    <div class="stripe stripe-gold"></div>
+    <div class="stripe stripe-red"></div>
+  </div>
+
+  <div class="scroll-ind">
+    <div class="scroll-line"></div>
+    <div class="scroll-text">Scroll</div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-left">
+        <div class="section-label">Our Story</div>
+        <h2 class="section-title">A Place to<br><em>Connect</em></h2>
+        <p class="about-body">
+          Mosaic Kitchen is more than a restaurant — it's a cultural tapestry woven from the rich flavours of Africa and the refined traditions of Chinese culinary art. We believe that great food is the universal language of connection.
+        </p>
+        <p class="about-body">
+          From our garden lounge where laughter drifts through the evening air, to our fine dining hall where each plate is a masterpiece — every corner of Mosaic is designed to create memories worth returning for.
+        </p>
+
+        <div class="about-stats">
+          <div>
+            <div class="stat-num">2+</div>
+            <div class="stat-label">Cuisines Mastered</div>
+          </div>
+          <div>
+            <div class="stat-num">50+</div>
+            <div class="stat-label">Signature Dishes</div>
+          </div>
+          <div>
+            <div class="stat-num">∞</div>
+            <div class="stat-label">Memories Made</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-right">
+        <div class="about-card-stack">
+          <div class="about-card about-card-main">
+            <div class="card-icon">🍽</div>
+          </div>
+          <div class="about-card about-card-secondary">
+            <div class="card-icon" style="color:rgba(67,160,71,0.3)">🌿</div>
+          </div>
+          <div class="about-badge">Est. Mosaic Kitchen</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OFFERINGS -->
+<section class="offerings" id="offerings">
+  <div class="section-inner">
+    <div class="offerings-header">
+      <div>
+        <div class="section-label">What We Offer</div>
+        <h2 class="section-title">The Full<br>Experience</h2>
+      </div>
+      <p style="max-width:280px; font-size:17px; font-weight:300; color:rgba(245,240,232,0.5); line-height:1.7">
+        Every element of Mosaic is crafted to deliver something extraordinary.
+      </p>
+    </div>
+
+    <div class="offerings-grid">
+      <div class="offering-card">
+        <div class="offering-num">01</div>
+        <div class="offering-icon">🕯️</div>
+        <div class="offering-name">Fine Dining</div>
+        <p class="offering-desc">An elevated culinary journey with expertly plated dishes, attentive service, and an atmosphere that transforms every meal into an occasion.</p>
+      </div>
+      <div class="offering-card">
+        <div class="offering-num">02</div>
+        <div class="offering-icon">🌿</div>
+        <div class="offering-name">Garden Lounge</div>
+        <p class="offering-desc">Unwind under open skies in our lush garden lounge. Perfect for casual evenings, cocktails, and conversations that go late into the night.</p>
+      </div>
+      <div class="offering-card">
+        <div class="offering-num">03</div>
+        <div class="offering-icon">🍺</div>
+        <div class="offering-name">In-house Beer</div>
+        <p class="offering-desc">Crafted on-site with pride — our signature in-house beer is brewed fresh and pairs beautifully with everything on our menu.</p>
+      </div>
+      <div class="offering-card">
+        <div class="offering-num">04</div>
+        <div class="offering-icon">🎱</div>
+        <div class="offering-name">Pool Area</div>
+        <p class="offering-desc">Challenge a friend or join a game in our vibrant pool area — the perfect blend of social energy and laid-back fun.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu-section" id="menu">
+  <div class="section-inner">
+    <div class="menu-header">
+      <div>
+        <div class="section-label">Our Menu</div>
+        <h2 class="section-title">Curated for<br>Every Palate</h2>
+      </div>
+      <p style="font-size:17px; font-weight:300; color:rgba(245,240,232,0.5); line-height:1.7">
+        From the heart of Africa to the woks of China — every dish is a celebration of culture and craft.
+      </p>
+    </div>
+
+    <div class="menu-tabs">
+      <button class="menu-tab active" onclick="switchTab(this,'african')">African Cuisine</button>
+      <button class="menu-tab" onclick="switchTab(this,'chinese')">Chinese Cuisine</button>
+      <button class="menu-tab" onclick="switchTab(this,'drinks')">Drinks & Beer</button>
+    </div>
+
+    <div id="tab-african" class="menu-items">
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Nyama Choma Platter</div>
+          <div class="menu-item-desc">Slow-roasted seasoned goat with kachumbari and ugali</div>
+        </div>
+        <div class="menu-item-price">KES 1,800</div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Tilapia ya Pwani</div>
+          <div class="menu-item-desc">Whole fried tilapia, coastal spices, coconut rice, greens</div>
+        </div>
+        <div class="menu-item-price">KES 1,400</div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Mukimo Signature</div>
+          <div class="menu-item-desc">Traditional mukimo with braised oxtail and coriander jus</div>
+        </div>
+        <div class="menu-item-price">KES 1,200</div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Swahili Lobster</div>
+          <div class="menu-item-desc">Grilled lobster tail, tamarind butter, plantain mash</div>
+        </div>
+        <div class="menu-item-price">KES 3,500</div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Mosaic Mixed Grill</div>
+          <div class="menu-item-desc">Beef, chicken &amp; lamb skewers with peri-peri and chimichurri</div>
+        </div>
+        <div class="menu-item-price">KES 2,200</div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Pilau de Luxe</div>
+          <div class="menu-item-desc">Aromatic spiced pilau, slow-cooked beef, yoghurt raita</div>
+        </div>
+        <div class="menu-item-price">KES 1,100</div>
+      </div>
+    </div>
+
+    <div id="tab-chinese" class="menu-items" style="display:none">
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Peking Duck</div>
+          <div class="menu-item-desc">Whole crispy roasted duck, pancakes, hoisin, scallions</div>
+        </div>
+        <div class="menu-item-price">KES 4,200</div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Kung Pao Prawns</div>
+          <div class="menu-item-desc">Wok-tossed prawns, Sichuan peppercorns, peanuts, chilli</div>
+        </div>
+        <div class="menu-item-price">KES 1,800</div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Dim Sum Basket</div>
+          <div class="menu-item-desc">Assorted steamed dumplings with ginger soy and chilli oil</div>
+        </div>
+        <div class="menu-item-price">KES 900</div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Sweet & Sour Tilapia</div>
+          <div class="menu-item-desc">African tilapia meets classic Cantonese sweet &amp; sour</div>
+        </div>
+        <div class="menu-item-price">KES 1,500</div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Fried Rice Imperial</div>
+          <div class="menu-item-desc">Wok-fried rice with egg, spring onion, char siu pork</div>
+        </div>
+        <div class="menu-item-price">KES 850</div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Mapo Tofu</div>
+          <div class="menu-item-desc">Silken tofu, spiced minced beef, chilli bean paste, numbing oil</div>
+        </div>
+        <div class="menu-item-price">KES 1,100</div>
+      </div>
+    </div>
+
+    <div id="tab-drinks" class="menu-items" style="display:none">
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Mosaic Lager</div>
+          <div class="menu-item-desc">Our signature in-house crafted beer — light, crisp, locally brewed</div>
+        </div>
+        <div class="menu-item-price">KES 350</div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Mosaic Dark Ale</div>
+          <div class="menu-item-desc">Rich, full-bodied in-house dark ale with roasted malt notes</div>
+        </div>
+        <div class="menu-item-price">KES 380</div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Garden Spritz</div>
+          <div class="menu-item-desc">Passion fruit, mint, ginger beer, fresh citrus</div>
+        </div>
+        <div class="menu-item-price">KES 450</div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Baobab Cocktail</div>
+          <div class="menu-item-desc">Baobab fruit, gin, elderflower tonic, lime</div>
+        </div>
+        <div class="menu-item-price">KES 700</div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Kenyan Tea Selection</div>
+          <div class="menu-item-desc">Premium loose-leaf single-origin Kenyan teas</div>
+        </div>
+        <div class="menu-item-price">KES 200</div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Fresh Juice Bar</div>
+          <div class="menu-item-desc">Daily-pressed tropical &amp; seasonal fruits</div>
+        </div>
+        <div class="menu-item-price">KES 300</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IN-HOUSE BEER -->
+<section class="beer-section">
+  <div class="beer-inner">
+    <div class="beer-visual">
+      <div class="beer-glass">
+        <div class="beer-glass-icon">🍺</div>
+        <div class="beer-label-card">
+          <div class="beer-name">Mosaic Brew</div>
+          <div class="beer-sub">Crafted In-House · Nairobi</div>
+        </div>
+      </div>
+    </div>
+    <div class="beer-content">
+      <div class="section-label">Brewed On-Site</div>
+      <h2 class="section-title">Our <em>Own</em><br>Beer</h2>
+      <p class="beer-body">
+        What's better than a great meal? A great meal with a beer you can't get anywhere else. Mosaic Kitchen brews its own signature beer in-house — fresh, distinctive, and made with pride.
+      </p>
+      <div class="beer-features">
+        <div class="beer-feature">
+          <div class="feature-dot green"></div>
+          <span>Freshly brewed on the premises daily</span>
+        </div>
+        <div class="beer-feature">
+          <div class="feature-dot gold"></div>
+          <span>Lager and Dark Ale varieties available</span>
+        </div>
+        <div class="beer-feature">
+          <div class="feature-dot red"></div>
+          <span>Perfectly paired with African & Chinese dishes</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE GALLERY -->
+<section class="experience">
+  <div class="section-inner">
+    <div class="experience-header">
+      <div class="section-label">The Atmosphere</div>
+      <h2 class="section-title">The Mosaic <em style="color:var(--gold)">Experience</em></h2>
+    </div>
+
+    <div class="exp-grid">
+      <div class="exp-cell exp-cell-1">
+        <div class="exp-inner"><div class="exp-emoji-lg">🍽</div></div>
+        <div class="exp-tag">Fine Dining Hall</div>
+      </div>
+      <div class="exp-cell exp-cell-2">
+        <div class="exp-inner"><div class="exp-emoji">🌿</div></div>
+        <div class="exp-tag">Garden Lounge</div>
+      </div>
+      <div class="exp-cell exp-cell-3">
+        <div class="exp-inner"><div class="exp-emoji">🎱</div></div>
+        <div class="exp-tag">Pool Area</div>
+      </div>
+      <div class="exp-cell exp-cell-4">
+        <div class="exp-inner"><div class="exp-emoji">🍺</div></div>
+        <div class="exp-tag">Bar & Lounge</div>
+      </div>
+      <div class="exp-cell exp-cell-5">
+        <div class="exp-inner"><div class="exp-emoji">👨‍🍳</div></div>
+        <div class="exp-tag">Open Kitchen</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="location" id="location">
+  <div class="section-inner">
+    <div class="location-grid">
+      <div>
+        <div class="section-label">Find Us</div>
+        <h2 class="section-title location-title">Visit <em>Mosaic</em><br>Kitchen</h2>
+
+        <div class="location-info">
+          <div class="info-block">
+            <div class="info-label">Address</div>
+            <div class="info-value">Mosaic Kitchen<br>Nairobi, Kenya</div>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Contact</div>
+            <div class="info-value">
+              <a href="tel:+254700000000" style="color:var(--gold); text-decoration:none">+254 700 000 000</a><br>
+              <a href="mailto:hello@mosaickitchen.co.ke" style="color:rgba(245,240,232,0.5); text-decoration:none; font-size:15px">hello@mosaickitchen.co.ke</a>
+            </div>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Opening Hours</div>
+            <div class="hours-grid">
+              <div class="hour-row">
+                <span class="hour-day">Mon – Thu</span>
+                <span class="hour-time">11am – 11pm</span>
+              </div>
+              <div class="hour-row">
+                <span class="hour-day">Fri – Sat</span>
+                <span class="hour-time">11am – 1am</span>
+              </div>
+              <div class="hour-row">
+                <span class="hour-day">Sunday</span>
+                <span class="hour-time">12pm – 10pm</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="social-links">
+          <a href="https://www.tiktok.com/@mosaickitchen_official" target="_blank" class="social-link" title="TikTok">♪</a>
+          <a href="#" class="social-link" title="Instagram">◈</a>
+          <a href="#" class="social-link" title="Facebook">f</a>
+          <a href="#" class="social-link" title="WhatsApp">✆</a>
+        </div>
+      </div>
+
+      <div class="map-placeholder">
+        <div class="map-grid"></div>
+        <div class="map-pin">
+          <span class="map-pin-icon">📍</span>
+          <div class="map-pin-label">Mosaic Kitchen · Nairobi</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVATION -->
+<section class="reservation" id="reservation">
+  <div class="reservation-inner">
+    <div class="section-label" style="justify-content:center; margin-bottom:16px">
+      Reserve Your Table
+    </div>
+    <h2 class="section-title" style="margin-bottom:16px">
+      Book a <em>Table</em>
+    </h2>
+    <p class="reservation-sub">
+      Secure your spot at Mosaic Kitchen. Whether it's a quiet dinner for two or a celebration with friends, we'll make it memorable.
+    </p>
+
+    <div class="res-form">
+      <div class="res-field">
+        <input class="res-input" type="text" placeholder="Your Name">
+      </div>
+      <div class="res-field">
+        <input class="res-input" type="tel" placeholder="Phone Number">
+      </div>
+      <div class="res-field">
+        <input class="res-input" type="date" placeholder="Date">
+      </div>
+      <div class="res-field">
+        <input class="res-input" type="time" placeholder="Time">
+      </div>
+      <div class="res-field">
+        <input class="res-input" type="number" placeholder="Number of Guests" min="1">
+      </div>
+      <div class="res-field">
+        <select class="res-input" style="appearance:none; cursor:pointer">
+          <option value="" disabled selected>Occasion</option>
+          <option>Regular Dinner</option>
+          <option>Birthday</option>
+          <option>Anniversary</option>
+          <option>Business Lunch</option>
+          <option>Private Event</option>
+        </select>
+      </div>
+      <div class="res-field full">
+        <textarea class="res-input" rows="3" placeholder="Special Requests or Notes" style="resize:none; font-family:inherit"></textarea>
+      </div>
+    </div>
+    <button class="res-submit">Confirm Reservation</button>
+    <p class="res-note">We'll confirm your reservation via phone within 2 hours.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">MO<span>SAIC</span> KITCHEN</div>
+        <p class="footer-tagline">
+          Fine Dining · Garden Lounge · In-house Beer<br>
+          African &amp; Chinese Cuisine · Nairobi, Kenya
+        </p>
+        <div class="social-links">
+          <a href="https://www.tiktok.com/@mosaickitchen_official" target="_blank" class="social-link" title="TikTok">♪</a>
+          <a href="#" class="social-link" title="Instagram">◈</a>
+          <a href="#" class="social-link" title="Facebook">f</a>
+          <a href="#" class="social-link" title="WhatsApp">✆</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#offerings">Experience</a></li>
+          <li><a href="#menu">Our Menu</a></li>
+          <li><a href="#location">Find Us</a></li>
+          <li><a href="#reservation">Reservations</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Cuisine</div>
+        <ul class="footer-links">
+          <li><a href="#menu">African Dishes</a></li>
+          <li><a href="#menu">Chinese Dishes</a></li>
+          <li><a href="#menu">Drinks & Cocktails</a></li>
+          <li><a href="#menu">In-house Beer</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Experiences</div>
+        <ul class="footer-links">
+          <li><a href="#offerings">Fine Dining</a></li>
+          <li><a href="#offerings">Garden Lounge</a></li>
+          <li><a href="#offerings">Pool Area</a></li>
+          <li><a href="#offerings">Private Events</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Mosaic Kitchen. All rights reserved. Nairobi, Kenya.</div>
+      <div class="color-bar">
+        <div class="color-bar-piece" style="background:var(--green-bright)"></div>
+        <div class="color-bar-piece" style="background:var(--gold)"></div>
+        <div class="color-bar-piece" style="background:var(--red-bright)"></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function switchTab(btn, tab) {
+    document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    ['african','chinese','drinks'].forEach(t => {
+      const el = document.getElementById('tab-' + t);
+      if(el) el.style.display = t === tab ? 'grid' : 'none';
+    });
+  }
+
+  // Subtle scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.offering-card, .menu-item, .about-stats, .beer-feature').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
