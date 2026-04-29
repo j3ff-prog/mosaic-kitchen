@@ -14,13 +14,22 @@
   HOW TO USE YOUR LOGO:
   Place your logo image file (e.g. logo.png) in the SAME folder as this HTML file.
   It will appear in the nav and on the browser tab automatically.
+  The browser tab also shows an "MK" monogram as a fallback if logo.png is missing.
+
+  HARDCODED IMAGES — place these files in the SAME folder as this HTML file:
+    about-dining.jpg  → Large card (right side of About section, fine dining photo)
+    about-garden.jpg  → Small card (right side of About section, garden/lounge photo)
+    mosaic-brew.jpg   → Beer section background (Mosaic Brew visual panel)
+  If an image file is missing the section falls back to its original emoji/colour.
 
   HOW TO ADD GALLERY IMAGES:
   Hover any gallery cell and click "Upload Photo" — images fit automatically.
   OR place image files next to this file and set src="yourimage.jpg" on the <img> tags.
 ======================================================== -->
 <title>Mosaic Kitchen — Fine Dining & Garden Lounge</title>
-<link rel="icon" type="image/png" href="logo.png">
+<link rel="icon" type="image/jpeg" href="mosaic logo.jpeg">
+<!-- SVG favicon fallback — shows "MK" monogram when logo.png is not present -->
+<link rel="icon" type="image/jpeg" href="data:image/jpeg,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%23080808'/%3E%3Crect x='2' y='2' width='60' height='60' rx='7' fill='none' stroke='%23E8A820' stroke-width='2'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='28' font-weight='900' fill='%23E8A820' text-anchor='middle'%3EMK%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -229,7 +238,6 @@
   .beer-section { background: var(--charcoal); }
   .beer-inner { display: grid; grid-template-columns: 1fr 1fr; }
   .beer-visual { background: linear-gradient(135deg,#0a1a0a,#0f2a0f); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; padding: 72px 52px; min-height: 380px; }
-  .beer-visual::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%,rgba(67,160,71,0.1) 0%,transparent 70%); }
   .beer-glass { text-align: center; position: relative; z-index: 2; }
   .beer-glass-icon { font-size: 68px; line-height: 1; margin-bottom: 18px; filter: drop-shadow(0 0 28px rgba(232,168,32,0.22)); }
   .beer-label-card { background: rgba(0,0,0,0.6); border: 1px solid rgba(67,160,71,0.3); padding: 16px 26px; }
@@ -443,8 +451,20 @@
       </div>
       <div class="about-right">
         <div class="about-card-stack">
-          <div class="about-card about-card-main"><div class="card-icon">🍽</div></div>
-          <div class="about-card about-card-secondary"><div class="card-icon" style="color:rgba(67,160,71,0.22)">🌿</div></div>
+          <div class="about-card about-card-main" style="background:#111;border:1px solid rgba(232,168,32,0.1);">
+            <!-- HARDCODED IMAGE — place your photo file next to index.html and set src="yourfile.jpg" -->
+            <img src="about-dining.jpg" alt="Fine Dining at Mosaic Kitchen"
+              style="width:100%;height:100%;object-fit:cover;display:block;"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="card-icon" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;">🍽</div>
+          </div>
+          <div class="about-card about-card-secondary" style="background:#0d1a0d;border:1px solid rgba(67,160,71,0.2);">
+            <!-- HARDCODED IMAGE — place your photo file next to index.html and set src="yourfile.jpg" -->
+            <img src="about-garden.jpg" alt="Garden Lounge at Mosaic Kitchen"
+              style="width:100%;height:100%;object-fit:cover;display:block;"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="card-icon" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;color:rgba(67,160,71,0.22)">🌿</div>
+          </div>
         </div>
       </div>
     </div>
@@ -565,8 +585,13 @@
 <!-- BEER -->
 <section class="beer-section">
   <div class="beer-inner">
-    <div class="beer-visual">
-      <div class="beer-glass">
+    <div class="beer-visual" style="position:relative;overflow:hidden;">
+      <!-- HARDCODED IMAGE — place your photo file next to index.html and set src="yourfile.jpg" -->
+      <img src="mosaic-brew.jpg" alt="Mosaic Brew — In-house Beer"
+        style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;opacity:0.55;"
+        onerror="this.style.display='none';">
+      <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(67,160,71,0.18) 0%,rgba(0,0,0,0.55) 70%);z-index:2;"></div>
+      <div class="beer-glass" style="position:relative;z-index:3;">
         <div class="beer-glass-icon">🍺</div>
         <div class="beer-label-card">
           <div class="beer-name">Mosaic Brew</div>
@@ -622,12 +647,19 @@
           <a href="#" class="social-link" title="Facebook">f</a>
         </div>
       </div>
-      <div class="map-placeholder">
-        <div class="map-grid"></div>
-        <div class="map-pin">
-          <span class="map-pin-icon">📍</span>
-          <div class="map-pin-label">Mosaic Kitchen · Nairobi</div>
-        </div>
+      <div class="map-placeholder" style="padding:0;border:1px solid rgba(232,168,32,0.18);overflow:hidden;border-radius:2px;">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8!2d36.8!3d-1.28!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMcKwMTYnNDgiLjAiUyAzNsKwNDgnMDAuMCJF!5e0!3m2!1sen!2ske!4v1700000000000!5m2!1sen!2ske&q=Mosaic+Kitchen+Nairobi"
+          width="100%"
+          height="360"
+          style="border:0;display:block;filter:grayscale(0.2) contrast(1.05);"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Mosaic Kitchen Location"
+          src="https://maps.google.com/maps?q=Mosaic+Kitchen+Nairobi&t=&z=16&ie=UTF8&iwloc=&output=embed">
+        </iframe>
+        <a href="https://maps.app.goo.gl/TXscf3iXFPgK2kiK8" target="_blank" style="display:block;background:rgba(0,0,0,0.85);padding:10px 18px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);text-decoration:none;text-align:center;border-top:1px solid rgba(232,168,32,0.18);">📍 Open in Google Maps →</a>
       </div>
     </div>
   </div>
