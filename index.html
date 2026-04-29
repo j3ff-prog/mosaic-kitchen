@@ -16,19 +16,19 @@
   It will appear in the nav and on the browser tab automatically.
   The browser tab also shows an "MK" monogram as a fallback if logo.png is missing.
 
-  HARDCODED IMAGES — place these files in the SAME folder as this HTML file:
+  HARDCODED IMAGES , place these files in the SAME folder as this HTML file:
     about-dining.jpg  → Large card (right side of About section, fine dining photo)
     about-garden.jpg  → Small card (right side of About section, garden/lounge photo)
     mosaic-brew.jpg   → Beer section background (Mosaic Brew visual panel)
   If an image file is missing the section falls back to its original emoji/colour.
 
   HOW TO ADD GALLERY IMAGES:
-  Hover any gallery cell and click "Upload Photo" — images fit automatically.
+  Hover any gallery cell and click "Upload Photo" , images fit automatically.
   OR place image files next to this file and set src="yourimage.jpg" on the <img> tags.
 ======================================================== -->
-<title>Mosaic Kitchen — Fine Dining & Garden Lounge</title>
+<title>Mosaic Kitchen , Fine Dining & Garden Lounge</title>
 <link rel="icon" type="image/jpeg" href="mosaic logo.jpeg">
-<!-- SVG favicon fallback — shows "MK" monogram when logo.png is not present -->
+<!-- SVG favicon fallback , shows "MK" monogram when logo.png is not present -->
 <link rel="icon" type="image/jpeg" href="data:image/jpeg,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%23080808'/%3E%3Crect x='2' y='2' width='60' height='60' rx='7' fill='none' stroke='%23E8A820' stroke-width='2'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='28' font-weight='900' fill='%23E8A820' text-anchor='middle'%3EMK%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -170,7 +170,7 @@
   .gallery-hint { margin-top: 10px; font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(245,240,232,0.28); }
 
   /*
-    GALLERY GRID — 5 cells.
+    GALLERY GRID , 5 cells.
     Images always fill their cell (object-fit: cover) regardless of size.
     Cell 1 spans 2 rows on desktop.
   */
@@ -183,7 +183,7 @@
   .exp-cell { position: relative; overflow: hidden; background: #111; cursor: pointer; }
   .exp-cell-1 { grid-row: 1 / 3; }
 
-  /* Image — always covers the full cell */
+  /* Image , always covers the full cell */
   .exp-cell-img {
     position: absolute; inset: 0;
     width: 100%; height: 100%;
@@ -441,8 +441,8 @@
       <div class="about-left">
         <div class="section-label">Our Story</div>
         <h2 class="section-title">A Place to<br><em>Connect</em></h2>
-        <p class="about-body">Mosaic Kitchen is more than a restaurant — it's a cultural tapestry woven from the rich flavours of Africa and the refined traditions of Chinese culinary art. We believe great food is the universal language of connection.</p>
-        <p class="about-body">From our garden lounge where laughter drifts through the evening air, to our fine dining hall where each plate is a masterpiece — every corner of Mosaic is designed to create memories worth returning for.</p>
+        <p class="about-body">Mosaic Kitchen is more than a restaurant , it's a cultural tapestry woven from the rich flavours of Africa and the refined traditions of Chinese culinary art. We believe great food is the universal language of connection.</p>
+        <p class="about-body">From our garden lounge where laughter drifts through the evening air, to our fine dining hall where each plate is a masterpiece , every corner of Mosaic is designed to create memories worth returning for.</p>
         <div class="about-stats">
           <div><div class="stat-num">2+</div><div class="stat-label">Cuisines Mastered</div></div>
           <div><div class="stat-num">50+</div><div class="stat-label">Signature Dishes</div></div>
@@ -452,14 +452,14 @@
       <div class="about-right">
         <div class="about-card-stack">
           <div class="about-card about-card-main" style="background:#111;border:1px solid rgba(232,168,32,0.1);">
-            <!-- HARDCODED IMAGE — place your photo file next to index.html and set src="yourfile.jpg" -->
+            <!-- HARDCODED IMAGE , place your photo file next to index.html and set src="yourfile.jpg" -->
             <img src="about-dining.jpeg" alt="Fine Dining at Mosaic Kitchen"
               style="width:100%;height:100%;object-fit:cover;display:block;"
               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
             <div class="card-icon" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;">🍽</div>
           </div>
           <div class="about-card about-card-secondary" style="background:#0d1a0d;border:1px solid rgba(67,160,71,0.2);">
-            <!-- HARDCODED IMAGE — place your photo file next to index.html and set src="yourfile.jpg" -->
+            <!-- HARDCODED IMAGE , place your photo file next to index.html and set src="yourfile.jpg" -->
             <img src="about-gardening.jpeg" alt="Garden Lounge at Mosaic Kitchen"
               style="width:100%;height:100%;object-fit:cover;display:block;"
               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
@@ -492,19 +492,19 @@
         <div class="offering-num">02</div>
         <div class="offering-icon">🌿</div>
         <div class="offering-name">Garden Lounge</div>
-        <p class="offering-desc">Unwind under open skies in our lush garden lounge — perfect for casual evenings, cocktails, and late-night conversations.</p>
+        <p class="offering-desc">Unwind under open skies in our lush garden lounge , perfect for casual evenings, cocktails, and late-night conversations.</p>
       </div>
       <div class="offering-card">
         <div class="offering-num">03</div>
         <div class="offering-icon">🍺</div>
         <div class="offering-name">In-house Beer</div>
-        <p class="offering-desc">Crafted on-site with pride — our signature beer is brewed fresh and pairs beautifully with everything on our menu.</p>
+        <p class="offering-desc">Crafted on-site with pride , our signature beer is brewed fresh and pairs beautifully with everything on our menu.</p>
       </div>
       <div class="offering-card">
         <div class="offering-num">04</div>
         <div class="offering-icon">🎱</div>
         <div class="offering-name">Pool Area</div>
-        <p class="offering-desc">Challenge a friend in our vibrant pool area — the perfect blend of social energy and laid-back fun.</p>
+        <p class="offering-desc">Challenge a friend in our vibrant pool area , the perfect blend of social energy and laid-back fun.</p>
       </div>
     </div>
   </div>
@@ -571,7 +571,7 @@
         <div class="section-label">Our Menu</div>
         <h2 class="section-title">Curated for<br>Every Palate</h2>
       </div>
-      <p style="font-size:15px;font-weight:300;color:rgba(245,240,232,0.42);line-height:1.7">From the heart of Africa to the woks of China — every dish is a celebration of culture and craft.</p>
+      <p style="font-size:15px;font-weight:300;color:rgba(245,240,232,0.42);line-height:1.7">From the heart of Africa to the woks of China , every dish is a celebration of culture and craft.</p>
     </div>
     <div class="menu-tabs">
       <button class="menu-tab active" onclick="switchTab(this,'african')">African Cuisine</button>
@@ -586,13 +586,13 @@
 <section class="beer-section">
   <div class="beer-inner">
     <div class="beer-visual" style="position:relative;overflow:hidden;">
-      <!-- HARDCODED IMAGE — place your photo file next to index.html and set src="yourfile.jpg" -->
-      <img src="mosaic-brew.jpeg" alt="Mosaic Brew — In-house Beer"
+      <!-- HARDCODED IMAGE , place your photo file next to index.html and set src="yourfile.jpg" -->
+      <img src="mosaic-brew.jpeg" alt="Mosaic Brew , In-house Beer"
         style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;opacity:0.55;"
         onerror="this.style.display='none';">
       <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(67,160,71,0.18) 0%,rgba(0,0,0,0.55) 70%);z-index:2;"></div>
       <div class="beer-glass" style="position:relative;z-index:3;">
-        <div class="beer-glass-icon">🍺</div>
+        <div class="beer-glass-icon"></div>
         <div class="beer-label-card">
           <div class="beer-name">Mosaic Brew</div>
           <div class="beer-sub">Crafted In-House · Nairobi</div>
@@ -602,7 +602,7 @@
     <div class="beer-content">
       <div class="section-label">Brewed On-Site</div>
       <h2 class="section-title">Our <em>Own</em> Beer</h2>
-      <p class="beer-body">What's better than a great meal? A great meal with a beer you can't get anywhere else. Mosaic Kitchen brews its own signature beer in-house — fresh, distinctive, and made with pride.</p>
+      <p class="beer-body">What's better than a great meal? A great meal with a beer you can't get anywhere else. Mosaic Kitchen brews its own signature beer in-house , fresh, distinctive, and made with pride.</p>
       <div class="beer-features">
         <div class="beer-feature"><div class="feature-dot green"></div><span>Freshly brewed on the premises daily</span></div>
         <div class="beer-feature"><div class="feature-dot gold"></div><span>Lager and Dark Ale varieties available</span></div>
@@ -688,7 +688,7 @@
         <input class="res-input" id="res-date" type="date" required>
       </div>
       <div class="res-field">
-        <!-- Min 09:00, Max 21:30 — last booking 1hr before close -->
+        <!-- Min 09:00, Max 21:30 , last booking 1hr before close -->
         <input class="res-input" id="res-time" type="time" min="09:00" max="21:30" required>
       </div>
       <div class="res-field">
@@ -801,7 +801,7 @@ const MENU = {
     // ← ADD MORE CHINESE DISHES HERE
   ],
   drinks: [
-    { name: "Mosaic Lager",         desc: "Our signature in-house crafted beer — light, crisp, locally brewed", price: "KES 350" },
+    { name: "Mosaic Lager",         desc: "Our signature in-house crafted beer , light, crisp, locally brewed", price: "KES 350" },
     { name: "Mosaic Dark Ale",      desc: "Rich full-bodied in-house dark ale with roasted malt notes",         price: "KES 380" },
     { name: "Garden Spritz",        desc: "Passion fruit, mint, ginger beer, fresh citrus",                    price: "KES 450" },
     { name: "Baobab Cocktail",      desc: "Baobab fruit, gin, elderflower tonic, lime",                        price: "KES 700" },
@@ -891,7 +891,7 @@ function submitReservation() {
 
   /* Build the WhatsApp message */
   const lines = [
-    `*New Table Reservation — Mosaic Kitchen* 🍽`,
+    `*New Table Reservation , Mosaic Kitchen* 🍽`,
     ``,
     `👤 *Name:* ${name}`,
     `📞 *Phone:* ${phone}`,
