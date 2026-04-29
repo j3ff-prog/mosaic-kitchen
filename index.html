@@ -369,7 +369,7 @@
       It will show as a circle in the nav AND as the browser tab icon (favicon).
       If the file isn't found, "MK" text shows as fallback.
     -->
-    <img src="logo.png" alt="Mosaic Kitchen Logo" class="nav-logo-img"
+    <img src="mosaic logo.jpeg" alt="Mosaic Kitchen Logo" class="nav-logo-img"
          onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='flex';">
     <div class="nav-logo-fallback" id="logo-fallback">MK</div>
     <span class="nav-brand">MO<span>SAIC</span></span>
@@ -501,7 +501,6 @@
     <div class="gallery-header">
       <div class="section-label">The Atmosphere</div>
       <h2 class="section-title">The Mosaic <em>Experience</em></h2>
-      <p class="gallery-hint">Hover a cell and click "Upload Photo" to add your images</p>
     </div>
 
     <div class="exp-grid">
@@ -510,50 +509,32 @@
         <div class="exp-placeholder" id="ph1"><div class="exp-placeholder-emoji">🍽</div><div class="exp-placeholder-text">Fine Dining Hall</div></div>
         <img src="" alt="Fine Dining Hall" class="exp-cell-img" id="img1">
         <input type="file" accept="image/*" class="exp-file-input" id="upload1" onchange="loadImage(this,'img1','ph1')">
-        <div class="exp-upload-btn">
-          <span class="exp-upload-label">Fine Dining Hall</span>
-          <button onclick="document.getElementById('upload1').click()">Upload Photo</button>
-        </div>
       </div>
 
       <div class="exp-cell exp-cell-2">
         <div class="exp-placeholder" id="ph2"><div class="exp-placeholder-emoji">🌿</div><div class="exp-placeholder-text">Garden Lounge</div></div>
         <img src="" alt="Garden Lounge" class="exp-cell-img" id="img2">
         <input type="file" accept="image/*" class="exp-file-input" id="upload2" onchange="loadImage(this,'img2','ph2')">
-        <div class="exp-upload-btn">
-          <span class="exp-upload-label">Garden Lounge</span>
-          <button onclick="document.getElementById('upload2').click()">Upload Photo</button>
-        </div>
       </div>
 
       <div class="exp-cell exp-cell-3">
         <div class="exp-placeholder" id="ph3"><div class="exp-placeholder-emoji">🎱</div><div class="exp-placeholder-text">Pool Area</div></div>
         <img src="" alt="Pool Area" class="exp-cell-img" id="img3">
         <input type="file" accept="image/*" class="exp-file-input" id="upload3" onchange="loadImage(this,'img3','ph3')">
-        <div class="exp-upload-btn">
-          <span class="exp-upload-label">Pool Area</span>
-          <button onclick="document.getElementById('upload3').click()">Upload Photo</button>
-        </div>
+       
       </div>
 
       <div class="exp-cell exp-cell-4">
         <div class="exp-placeholder" id="ph4"><div class="exp-placeholder-emoji">🍺</div><div class="exp-placeholder-text">Bar & Lounge</div></div>
         <img src="" alt="Bar and Lounge" class="exp-cell-img" id="img4">
         <input type="file" accept="image/*" class="exp-file-input" id="upload4" onchange="loadImage(this,'img4','ph4')">
-        <div class="exp-upload-btn">
-          <span class="exp-upload-label">Bar & Lounge</span>
-          <button onclick="document.getElementById('upload4').click()">Upload Photo</button>
-        </div>
       </div>
 
       <div class="exp-cell exp-cell-5">
         <div class="exp-placeholder" id="ph5"><div class="exp-placeholder-emoji">👨‍🍳</div><div class="exp-placeholder-text">Open Kitchen</div></div>
         <img src="" alt="Open Kitchen" class="exp-cell-img" id="img5">
         <input type="file" accept="image/*" class="exp-file-input" id="upload5" onchange="loadImage(this,'img5','ph5')">
-        <div class="exp-upload-btn">
-          <span class="exp-upload-label">Open Kitchen</span>
-          <button onclick="document.getElementById('upload5').click()">Upload Photo</button>
-        </div>
+       
       </div>
 
     </div>
