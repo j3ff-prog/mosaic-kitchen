@@ -522,39 +522,31 @@
       <div class="section-label">The Atmosphere</div>
       <h2 class="section-title">The Mosaic <em>Experience</em></h2>
     </div>
-
     <div class="exp-grid">
 
       <div class="exp-cell exp-cell-1">
         <div class="exp-placeholder" id="ph1"><div class="exp-placeholder-emoji">🍽</div><div class="exp-placeholder-text">Fine Dining Hall</div></div>
-        <img src="" alt="Fine Dining Hall" class="exp-cell-img" id="img1">
-        <input type="file" accept="image/*" class="exp-file-input" id="upload1" onchange="loadImage(this,'img1','ph1')">
+        <img src="dining-hall.jpeg" alt="Fine Dining Hall" class="exp-cell-img" id="img1">
       </div>
 
       <div class="exp-cell exp-cell-2">
         <div class="exp-placeholder" id="ph2"><div class="exp-placeholder-emoji">🌿</div><div class="exp-placeholder-text">Garden Lounge</div></div>
-        <img src="" alt="Garden Lounge" class="exp-cell-img" id="img2">
-        <input type="file" accept="image/*" class="exp-file-input" id="upload2" onchange="loadImage(this,'img2','ph2')">
+        <img src="garden-lounge.jpeg" alt="Garden Lounge" class="exp-cell-img" id="img2">
       </div>
 
       <div class="exp-cell exp-cell-3">
         <div class="exp-placeholder" id="ph3"><div class="exp-placeholder-emoji">🎱</div><div class="exp-placeholder-text">Pool Area</div></div>
-        <img src="" alt="Pool Area" class="exp-cell-img" id="img3">
-        <input type="file" accept="image/*" class="exp-file-input" id="upload3" onchange="loadImage(this,'img3','ph3')">
-       
+        <img src="pool-area.jpeg" alt="Pool Area" class="exp-cell-img" id="img3">
       </div>
 
       <div class="exp-cell exp-cell-4">
         <div class="exp-placeholder" id="ph4"><div class="exp-placeholder-emoji">🍺</div><div class="exp-placeholder-text">Bar & Lounge</div></div>
-        <img src="" alt="Bar and Lounge" class="exp-cell-img" id="img4">
-        <input type="file" accept="image/*" class="exp-file-input" id="upload4" onchange="loadImage(this,'img4','ph4')">
+        <img src="mosaic-brew.jpeg" alt="Bar and Lounge" class="exp-cell-img" id="img4">
       </div>
 
       <div class="exp-cell exp-cell-5">
         <div class="exp-placeholder" id="ph5"><div class="exp-placeholder-emoji">👨‍🍳</div><div class="exp-placeholder-text">Open Kitchen</div></div>
-        <img src="" alt="Open Kitchen" class="exp-cell-img" id="img5">
-        <input type="file" accept="image/*" class="exp-file-input" id="upload5" onchange="loadImage(this,'img5','ph5')">
-       
+        <img src="open-kitchen.jpeg" alt="Open Kitchen" class="exp-cell-img" id="img5">
       </div>
 
     </div>
@@ -684,12 +676,13 @@
       <div class="res-field">
         <input class="res-input" id="res-phone" type="tel" placeholder="Phone Number" required>
       </div>
-      <div class="res-field">
-        <input class="res-input" id="res-date" type="date" placeholder="Enter date" required>
+     <div class="res-field">
+       <label for="res-date" style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:6px;opacity:0.8;">Date *</label>
+           <input class="res-input" id="res-date" type="date" required>
       </div>
       <div class="res-field">
-        <!-- Min 09:00, Max 21:30 , last booking 1hr before close -->
-        <input class="res-input" id="res-time" type="time" min="09:00" max="21:30" placeholder="Enter time" required>
+        <label for="res-time" style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:6px;opacity:0.8;">Time * (9:00 AM – 9:30 PM)</label>
+         <input class="res-input" id="res-time" type="time" min="09:00" max="21:30" required>
       </div>
       <div class="res-field">
         <input class="res-input" id="res-guests" type="number" placeholder="Number of Guests" min="1" max="100">
@@ -846,6 +839,24 @@ function loadImage(input, imgId, phId) {
   reader.readAsDataURL(input.files[0]);
 }
 
+/* ── Auto-show hardcoded gallery images on load ── */
+document.querySelectorAll('.exp-cell-img').forEach(function(img) {
+  if (!img.src || img.src === window.location.href) return;
+  var phId = img.id.replace('img', 'ph');
+  var ph = document.getElementById(phId);
+  img.onload = function() {
+    img.classList.add('loaded');
+    if (ph) ph.style.display = 'none';
+  };
+  img.onerror = function() {
+    img.classList.remove('loaded');
+    if (ph) ph.style.display = '';
+  };
+  if (img.complete && img.naturalWidth > 0) {
+    img.classList.add('loaded');
+    if (ph) ph.style.display = 'none';
+  }
+});
 /* ── Booking: set min date to today ── */
 (function() {
   const today = new Date();
